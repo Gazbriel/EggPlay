@@ -7,8 +7,9 @@ public class CollectableCounterText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        GameObject.FindGameObjectWithTag("Player Prefs").GetComponent<PlayerPreferences>().ResetCollectablesObtained();
+
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {

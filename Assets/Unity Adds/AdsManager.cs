@@ -94,6 +94,46 @@ public class AdsManager : MonoBehaviour {
     }
     #endregion
 
+    #region Skipp Mission Showing video
+    public void ShowSkippMissionRewardVideoEggsMenu()
+    {
+        if (Advertisement.IsReady())
+        {
+            SetRewardInteractable(false);
+            //the result at the end is for bein called the method below
+            Advertisement.Show("rewardedVideo", new ShowOptions() { resultCallback = SkippMissionHandleAdResultEggsMenu });
+        }
+    }
+    //----------------
+    //public float secondsToActivate;
+    public void SetSkippInteractable(bool a)
+    {
+        GameObject.Find("Skipp").GetComponent<Button>().interactable = a;
+    }
+
+    private void SkippMissionHandleAdResultEggsMenu(ShowResult result)
+    {
+        switch (result)
+        {
+            case ShowResult.Failed:
+                //not conection internet
+                break;
+            case ShowResult.Skipped:
+                //hey, you skeep the add
+                break;
+            case ShowResult.Finished:
+                //reward Player
+                //change mission
+                Debug.Log("Changing mision by watching a video...");
+                GameObject.Find("Missions").GetComponent<MissionController>().ChangeMission();
+                SetSkippInteractable(true);
+                break;
+            default:
+                break;
+        }
+    }
+    #endregion
+
     #region Get normal video when the player die 5 times
 
     public int dieTimesStablish;

@@ -106,6 +106,7 @@ public class LadderboardController : MonoBehaviour {
 
     public void OnLeaderboardClick()
     {
+        ReportScore(PlayerPrefs.GetInt("best"));
         if (PlayGamesPlatform.Instance.localUser.authenticated)
         {
             //GameObject.Find("Cartel").GetComponentInChildren<Text>().text = "Signed";
